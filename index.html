@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pioneer Bank</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha084-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha084-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E26
+    XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -30,7 +31,7 @@
            <div class="col-md-4">
                <div class="withdraw status">
                    <h5>Withdraw</h5>
-                   <h2>$<span id="currentWithdraw">3</span></h2> 
+                   <h2>$<span id="currentWithdraw">00</span></h2> 
                </div>    
            </div>
            <div class="col-md-4 ">
@@ -83,8 +84,11 @@
         const withdrawBtn = document.getElementById("addWithdraw");
         withdrawBtn.addEventListener("click", function(){
             const withdrawNumber = getInputNumber("withdrawAmount");
-            console.log(withdrawNumber);
-           
+            
+            updateSpanText("currentWithdraw", withdrawNumber);
+            updateSpanText("currentBalance", -1 * withdrawNumber);
+
+            document.getElementById("withdrawAmount").value = "";    
        
         })
         function getInputNumber(id){
@@ -94,10 +98,10 @@
 
         }
 
-        function updateSpanText(id, depositNumber){
+        function updateSpanText(id, addedNumber){
             const current = document.getElementById(id).innerText;
             const currentNumber = parseFloat(current);
-            const totalAmount = depositNumber + currentNumber;
+            const totalAmount = addedNumber + currentNumber;
             document.getElementById(id).innerText = totalAmount;
 
         }
